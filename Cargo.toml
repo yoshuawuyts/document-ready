@@ -1,0 +1,28 @@
+[package]
+name = "document-ready"
+version = "0.1.0"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/chooxide/document-ready"
+documentation = "https://docs.rs/document-ready"
+description = "Document ready listener for browsers"
+authors = ["Yoshua Wuyts <yoshuawuyts@gmail.com>"]
+readme = "README.md"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+failure = "0.1.2"
+
+[dependencies.wasm-bindgen]
+git = "https://github.com/rustwasm/wasm-bindgen"
+features = ["default", "nightly"]
+
+[dependencies.web-sys]
+git = "https://github.com/rustwasm/wasm-bindgen"
+features = [
+  "Document",
+  "EventTarget",
+]
+
+[dev-dependencies]
