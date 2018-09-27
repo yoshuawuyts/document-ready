@@ -17,6 +17,13 @@ Document ready listener for browsers.
 $ cargo add document-ready
 ```
 
+## Contributing
+Want to join us? Check out our [The "Contributing" section of the
+guide][contributing] and take a look at some of these issues:
+
+- [Issues labeled "good first issue"][good-first-issue]
+- [Issues labeled "help wanted"][help-wanted]
+
 ## License
 [MIT](./LICENSE-MIT) OR [Apache-2.0](./LICENSE-APACHE)
 
@@ -29,3 +36,7 @@ $ cargo add document-ready
 [7]: https://img.shields.io/badge/docs-latest-blue.svg?style=flat-square
 [8]: https://docs.rs/document-ready
 [9]: https://github.com/chooxide/document-ready/releases
+
+[contributing]: https://github.com/chooxide/document-ready/.github/CONTRIBUTING.md
+[good-first-issue]: https://github.com/chooxide/document-ready/labels/good%20first%20issue
+[help-wanted]: https://github.com/chooxide/document-ready/labels/help%20wanted
