@@ -6,7 +6,7 @@ Document ready listener for browsers.
 
 - [Documentation][8]
 - [Crates.io][2]
-- [Releases][9]
+- [Releases][releases]
 
 ## Usage
 ```rs
@@ -35,8 +35,8 @@ guide][contributing] and take a look at some of these issues:
 [6]: https://crates.io/crates/document-ready
 [7]: https://img.shields.io/badge/docs-latest-blue.svg?style=flat-square
 [8]: https://docs.rs/document-ready
-[9]: https://github.com/chooxide/document-ready/releases
 
+[releases]: https://github.com/chooxide/document-ready/releases
 [contributing]: https://github.com/chooxide/document-ready/.github/CONTRIBUTING.md
 [good-first-issue]: https://github.com/chooxide/document-ready/labels/good%20first%20issue
 [help-wanted]: https://github.com/chooxide/document-ready/labels/help%20wanted
