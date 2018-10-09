@@ -2,6 +2,8 @@ use failure::{Backtrace, Context, Fail};
 use std::fmt::{self, Display};
 use std::result;
 
+use wasm_bindgen::prelude::*;
+
 /// A specialized [`Result`] type for this crate's operations.
 ///
 /// This is generally used to avoid writing out [Error] directly and
@@ -19,6 +21,7 @@ pub type Result<T> = result::Result<T, Error>;
 /// It is used with the [`Error`] struct.
 ///
 /// [`Error`]: std.struct.Error.html
+#[wasm_bindgen]
 #[derive(Debug, Fail)]
 pub enum ErrorKind {
   /// Failed to attach a listener to the document.
@@ -32,6 +35,7 @@ pub enum ErrorKind {
 /// A specialized [`Error`] type for this crate's operations.
 ///
 /// [`Error`]: https://doc.rust-lang.org/nightly/std/error/trait.Error.html
+#[wasm_bindgen]
 #[derive(Debug)]
 pub struct Error {
   inner: Context<ErrorKind>,

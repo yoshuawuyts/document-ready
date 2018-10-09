@@ -3,6 +3,7 @@
 #![cfg_attr(feature = "nightly", doc(include = "../README.md"))]
 #![cfg_attr(test, deny(warnings))]
 #![forbid(unsafe_code, missing_debug_implementations)]
+#![feature(futures_api)]
 
 #[macro_use]
 extern crate failure;
