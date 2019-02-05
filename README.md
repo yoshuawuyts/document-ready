@@ -10,6 +10,15 @@ Document ready listener for browsers.
 
 ## Usage
 ```rs
+use document_ready::document_ready;
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen(start)]
+pub fn main() {
+  println!("waiting on document to load");
+  await!{document_ready()};
+  println!("document loaded!");
+}
 ```
 
 ## Installation
