@@ -2,7 +2,7 @@
 name = "document-ready"
 version = "1.0.0"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/chooxide/document-ready"
+repository = "https://github.com/yoshuawuyts/document-ready"
 documentation = "https://docs.rs/document-ready"
 description = "Document ready listener for browsers"
 authors = ["Yoshua Wuyts <yoshuawuyts@gmail.com>", "Nick Fitzgerald" ]

@@ -9,7 +9,7 @@ Document ready listener for browsers.
 - [Releases][releases]
 
 ## Usage
-```rs
+```rust
 use document_ready::document_ready;
 use wasm_bindgen::prelude::*;
 
@@ -38,14 +38,14 @@ guide][contributing] and take a look at some of these issues:
 
 [1]: https://img.shields.io/crates/v/document-ready.svg?style=flat-square
 [2]: https://crates.io/crates/document-ready
-[3]: https://img.shields.io/travis/chooxide/document-ready.svg?style=flat-square
-[4]: https://travis-ci.org/chooxide/document-ready
+[3]: https://img.shields.io/travis/yoshuawuyts/document-ready.svg?style=flat-square
+[4]: https://travis-ci.org/yoshuawuyts/document-ready
 [5]: https://img.shields.io/crates/d/document-ready.svg?style=flat-square
 [6]: https://crates.io/crates/document-ready
 [7]: https://img.shields.io/badge/docs-latest-blue.svg?style=flat-square
 [8]: https://docs.rs/document-ready
 
-[releases]: https://github.com/chooxide/document-ready/releases
-[contributing]: https://github.com/chooxide/document-ready/.github/CONTRIBUTING.md
-[good-first-issue]: https://github.com/chooxide/document-ready/labels/good%20first%20issue
-[help-wanted]: https://github.com/chooxide/document-ready/labels/help%20wanted
+[releases]: https://github.com/yoshuawuyts/document-ready/releases
+[contributing]: https://github.com/yoshuawuyts/document-ready/.github/CONTRIBUTING.md
+[good-first-issue]: https://github.com/yoshuawuyts/document-ready/labels/good%20first%20issue
+[help-wanted]: https://github.com/yoshuawuyts/document-ready/labels/help%20wanted
