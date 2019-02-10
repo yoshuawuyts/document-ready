@@ -23,7 +23,7 @@ impl Future for DocumentReady {
       Ok(Async::NotReady) => Ok(Async::NotReady),
       Err(_) => {
         if cfg!(debug_assertions) {
-          unreachable!("This future keeps the closure alive, the closer keeps the sender alive. Therefor it can't be cancelled.")
+          unreachable!("This future keeps the closure alive. The closure keeps the sender alive. Therefor it can't be cancelled.")
         }
         Err(())
       }
@@ -31,6 +31,7 @@ impl Future for DocumentReady {
   }
 }
 
+/// Wait for the DOM to be loaded.
 pub fn ready() -> impl Future<Item = (), Error = ()> {
   let doc = window()
     .document()
