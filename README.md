@@ -15,9 +15,9 @@ use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(start)]
 pub fn main() {
-  println!("waiting on document to load");
-  await!{document_ready()};
-  println!("document loaded!");
+    println!("waiting on document to load");
+    await!{document_ready()};
+    println!("document loaded!");
 }
 ```
 
