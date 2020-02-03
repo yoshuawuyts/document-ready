@@ -4,7 +4,7 @@ rust:
 
 before_script: |
   rustup component add rustfmt-preview &&
-  rustup target add wasm32-unknown-uknown
+  rustup target add wasm32-unknown-unknown
 script: |
   cargo fmt -- --check &&
   cargo build --verbose --target wasm32-unknown-unknown
