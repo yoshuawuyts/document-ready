@@ -1,10 +1,10 @@
 //! Document ready listener for browsers.
-//! 
+//!
 //! # Examples
-//! 
+//!
 //! ```
 //! use wasm_bindgen::prelude::*;
-//! 
+//!
 //! #[wasm_bindgen(start)]
 //! pub fn main() {
 //!     println!("waiting on document to load");
