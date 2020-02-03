@@ -1,67 +1,43 @@
-#![forbid(unsafe_code, missing_debug_implementations)]
-#![feature(futures_api)]
+//! Document ready listener for browsers.
+//!
+//! # Examples
+//!
+//! ```
+//! use wasm_bindgen::prelude::*;
+//!
+//! #[wasm_bindgen(start)]
+//! pub fn main() {
+//!     println!("waiting on document to load");
+//!     document_ready::ready().await;
+//!     println!("document loaded!");
+//! }
+//! ```
 
-use futures::prelude::*;
-use futures::sync::oneshot;
-use wasm_bindgen::prelude::Closure;
-use wasm_bindgen::JsCast;
+#![forbid(unsafe_code, future_incompatible, rust_2018_idioms)]
+#![deny(missing_debug_implementations, nonstandard_style)]
+#![warn(missing_docs, missing_doc_code_examples, unreachable_pub)]
 
-struct DocumentReady {
-    receiver: oneshot::Receiver<()>,
-    _cb: Closure<FnMut()>,
-}
-
-/// A function to call once the DOM has loaded. If the DOM is already loaded,
-/// it will return on next tick.
-impl Future for DocumentReady {
-    type Item = ();
-    type Error = ();
-
-    fn poll(&mut self) -> Poll<Self::Item, Self::Error> {
-        match self.receiver.poll() {
-            Ok(Async::Ready(_)) => Ok(Async::Ready(())),
-            Ok(Async::NotReady) => Ok(Async::NotReady),
-            Err(_) => {
-                if cfg!(debug_assertions) {
-                    unreachable!("This future keeps the closure alive. The closure keeps the sender alive. Therefor it can't be cancelled.")
-                }
-                Err(())
-            }
-        }
-    }
-}
+use futures_channel::oneshot::channel;
+use gloo_events::EventListener;
+use std::time::Duration;
 
 /// Wait for the DOM to be loaded.
-pub fn ready() -> impl Future<Item = (), Error = ()> {
-    let doc = window()
+pub async fn ready() {
+    let document = web_sys::window()
+        .expect("Window not found")
         .document()
-        .expect("should have a document on window");
+        .unwrap();
 
-    let (sender, receiver) = oneshot::channel();
-
-    let mut sender = Some(sender);
-    let cb = move || {
-        sender.take().unwrap().send(()).unwrap();
-    };
-
-    let cb = Closure::wrap(Box::new(cb) as Box<FnMut()>);
-    match doc.ready_state().as_str() {
+    match document.ready_state().as_str() {
         "complete" | "interactive" => {
-            window()
-                .set_timeout_with_callback(cb.as_ref().unchecked_ref())
-                .unwrap();
+            futures_timer::Delay::new(Duration::from_secs(0)).await;
         }
         _ => {
-            doc.add_event_listener_with_callback("DOMContentLoaded", cb.as_ref().unchecked_ref())
-                .unwrap();
+            let (sender, receiver) = channel();
+            let _listener = EventListener::once(&document, "DOMContentLoaded", move |_| {
+                sender.send(()).unwrap();
+            });
+            receiver.await.unwrap();
         }
     };
-
-    DocumentReady { _cb: cb, receiver }
-}
-
-/// Access the window.
-// todo: expect_throw
-fn window() -> web_sys::Window {
-    web_sys::window().expect("no global `window` exists")
 }
