@@ -17,7 +17,7 @@
 #![deny(missing_debug_implementations, nonstandard_style)]
 #![warn(missing_docs, missing_doc_code_examples, unreachable_pub)]
 
-use async_std::sync::channel;
+use futures_channel::oneshot::channel;
 use gloo_events::EventListener;
 use std::time::Duration;
 
@@ -33,11 +33,11 @@ pub async fn ready() {
             futures_timer::Delay::new(Duration::from_secs(0)).await;
         }
         _ => {
-            let (sender, receiver) = channel(1);
-            EventListener::new(&document, "DOMContentLoaded", move |_| {
-                sender.try_send(()).unwrap();
+            let (sender, receiver) = channel();
+            let _listener = EventListener::once(&document, "DOMContentLoaded", move |_| {
+                sender.send(()).unwrap();
             });
-            receiver.recv().await;
+            receiver.await.unwrap();
         }
     };
 }

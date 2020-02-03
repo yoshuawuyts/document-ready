@@ -13,7 +13,7 @@ edition = "2018"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-async-std = { version = "1.4.0", default-features = false, features = ["unstable"] }
+futures-channel = "0.3.1"
 futures-timer = "3.0.1"
 gloo-events = "0.1.1"
 wasm-bindgen = "0.2.58"
